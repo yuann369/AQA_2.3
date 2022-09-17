@@ -29,7 +29,7 @@ class DeliveryTest {
         var daysToAddForSecondMeeting = 7;
         var secondMeetingDate = DataGenerator.generateDate(daysToAddForSecondMeeting);
 
-        $x("//input[@placeholder='Город']").setValue( validUser.getCity());
+        $x("//input[@placeholder='Город']").setValue(validUser.getCity());
         $("span[data-test-id='date'] input").sendKeys(Keys.CONTROL + "A");
         $("span[data-test-id='date'] input").sendKeys(Keys.DELETE);
         $("span[data-test-id='date'] input").setValue(firstMeetingDate);
