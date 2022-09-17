@@ -9,6 +9,7 @@ import ru.netology.delivery.data.DataGenerator;
 
 import java.time.Duration;
 
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
@@ -38,7 +39,7 @@ class DeliveryTest {
         $(By.cssSelector("[data-test-id='agreement']")).click();
         $x("//*[text()='Запланировать']").click();
         $(byText("Успешно!")).shouldBe(visible);
-        $(byText("Встреча успешно запланирована на " + firstMeetingDate));
+        $(By.cssSelector(".notification__content")).shouldHave(text("Встреча успешно запланирована на " + firstMeetingDate)).shouldBe(visible);
 
         $("span[data-test-id='date'] input").sendKeys(Keys.CONTROL + "A");
         $("span[data-test-id='date'] input").sendKeys(Keys.DELETE);
@@ -48,7 +49,7 @@ class DeliveryTest {
         $(By.cssSelector("[data-test-id='replan-notification']")).shouldBe(visible);
         $(By.cssSelector("[data-test-id='replan-notification'] .button__content")).click();
         $(byText("Успешно!")).shouldBe(visible);
-        $(byText("Встреча успешно запланирована на " + secondMeetingDate));
+        $(By.cssSelector(".notification__content")).shouldHave(text("Встреча успешно запланирована на " + secondMeetingDate)).shouldBe(visible);
 
     }
 }
